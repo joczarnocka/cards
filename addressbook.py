@@ -4,10 +4,10 @@ from faker import Faker
 fake = Faker()
 
 class BaseContact:
-    def __init__(self, firstname, surname, company, email) -> None:
+    def __init__(self, firstname, surname, private_phone, email) -> None:
         self.firstname = firstname
         self.surname = surname
-        self.company = company
+        self.private_phone = private_phone
         self.email = email
         self._name_length = len(f"{self.firstname} {self.surname}")
      
@@ -21,13 +21,18 @@ class BaseContact:
     def name_length(self):
         return self._name_length
 
+class BusinessContact(BaseContact):
 
-    
+    def __init__(self, role, company, business_phone, *args, **kwargs) -> None:
+        super().__init__( *args, **kwargs)
+        self.role = role
+        self.company = company
+        self.busines_phone = business_phone
+        
 
 def giveCard() -> BaseContact:
     firstname = fake.first_name()
     surname = fake.last_name()
-    company = fake.company()
     email= f"{firstname}.{surname}@{fake.domain_name()}"
     return BaseContact(firstname, surname, company, email)
 
