@@ -42,6 +42,11 @@ class BusinessContact(BaseContact):
 
 
 def giveCard() -> BaseContact:
+    """
+    Creates an instance of BaseContact - private visit card
+    Arguments:
+    -
+    """
     firstname = fake.first_name()
     surname = fake.last_name()
     phone = fake.phone_number()
@@ -50,6 +55,12 @@ def giveCard() -> BaseContact:
 
 
 def create_contacts(card_type, card_number) -> list:
+    """
+    Creates a list of visit cards of given type and number
+    Arguments:
+    - card_type - base or business
+    - card_numer - any int number
+    """
     res_list = []
     for i in range(card_number):
         firstname = fake.first_name()
